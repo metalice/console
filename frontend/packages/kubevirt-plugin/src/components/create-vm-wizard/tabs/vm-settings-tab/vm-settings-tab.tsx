@@ -46,6 +46,7 @@ export const VMSettingsTabComponent: React.FC<VMSettingsTabComponentProps> = ({
   iUserTemplate,
   commonTemplates,
   commonTemplateName,
+  isCreateTemplate,
   cnvBaseImages,
   provisionSourceStorage,
   updateStorage,
@@ -151,6 +152,7 @@ export const VMSettingsTabComponent: React.FC<VMSettingsTabComponentProps> = ({
         iUserTemplate={iUserTemplate}
         commonTemplates={commonTemplates}
         commonTemplateName={commonTemplateName}
+        isCreateTemplate={isCreateTemplate}
         operatinSystemField={getField(VMSettingsField.OPERATING_SYSTEM)}
         flavor={getFieldValue(VMSettingsField.FLAVOR)}
         cloneBaseDiskImageField={getField(VMSettingsField.CLONE_COMMON_BASE_DISK_IMAGE)}
@@ -220,6 +222,7 @@ const stateToProps = (state, { wizardReduxID }) => ({
   iUserTemplate: iGetCommonData(state, wizardReduxID, VMWizardProps.userTemplate),
   commonTemplateName: getInitialData(state, wizardReduxID).commonTemplateName,
   cnvBaseImages: iGetCommonData(state, wizardReduxID, VMWizardProps.openshiftCNVBaseImages),
+  isCreateTemplate: iGetCommonData(state, wizardReduxID, VMWizardProps.isCreateTemplate),
   openshiftFlag: iGetCommonData(state, wizardReduxID, VMWizardProps.openshiftFlag),
   provisionSourceStorage: iGetProvisionSourceStorage(state, wizardReduxID),
   steps: getStepsMetadata(state, wizardReduxID),
@@ -231,6 +234,7 @@ type VMSettingsTabComponentProps = {
   updateStorage: (storage: VMWizardStorage) => void;
   vmSettings: any;
   provisionSourceStorage: VMWizardStorage;
+  isCreateTemplate: boolean;
   commonTemplates: any;
   iUserTemplate: any;
   commonTemplateName: string;

@@ -45,6 +45,7 @@ export const OS: React.FC<OSProps> = React.memo(
     commonTemplates,
     operatinSystemField,
     cloneBaseDiskImageField,
+    isCreateTemplate,
     mountWindowsGuestToolsField,
     flavor,
     workloadProfile,
@@ -60,7 +61,6 @@ export const OS: React.FC<OSProps> = React.memo(
     const cloneBaseDiskImage = iGetFieldValue(cloneBaseDiskImageField);
     const mountWindowsGuestTools = iGetFieldValue(mountWindowsGuestToolsField);
     const isUserTemplateValid = iGetIsLoaded(iUserTemplate) && !iGetLoadError(iUserTemplate);
-
     const params = {
       flavor,
       workload: workloadProfile,
@@ -265,7 +265,7 @@ export const OS: React.FC<OSProps> = React.memo(
           fieldType={FormFieldType.INLINE_CHECKBOX}
           loadingResources={loadingResources}
         >
-          <FormField>
+          <FormField isCreateTemplate={isCreateTemplate}>
             <Checkbox
               id={getFieldId(cloneBaseDiskImageField)}
               onChange={(v) => onChange(VMSettingsField.CLONE_COMMON_BASE_DISK_IMAGE, v)}
@@ -315,6 +315,7 @@ type OSProps = {
   workloadProfile: string;
   cnvBaseImages: any;
   openshiftFlag: boolean;
+  isCreateTemplate: boolean;
   onChange: (key: string, value: string | boolean) => void;
   goToStorageStep: () => void;
 };
